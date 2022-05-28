@@ -27,13 +27,13 @@ function checkAnswer(event) {
   const answerBox = document.querySelector('#answer');
   const { target } = event;
   if (target.id === 'correct') {
-    answerBox.innerHTML = 'Acertou!';
+    answerBox.innerHTML = 'Acertou! <br> Clique duas vezes para reiniciar o jogo.';
     addScore();
-    removeListeners();
   } else {
-    answerBox.innerHTML = 'Errou! Tente novamente!';
-    removeListeners();
+    answerBox.innerHTML = 'Errou! Tente novamente! <br> Clique duas vezes para reiniciar o jogo.';
   }
+  removeListeners();
+  document.body.addEventListener('dblclick', resetGame);
 }
 
 function setColors() {
@@ -62,6 +62,7 @@ function resetGame() {
   setColors();
   const answerBox = document.querySelector('#answer');
   answerBox.innerHTML = 'Escolha uma cor';
+  document.body.removeEventListener('click', resetGame);
 }
 
 setColors();
